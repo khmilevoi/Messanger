@@ -1,0 +1,112 @@
+@import "./_variables"
+
+.hamburger
+	margin: 0 40px 0 0
+	width: 18px
+	height: 14px
+	display: flex
+	flex-direction: column
+	align-items: stretch
+	justify-content: space-between
+	transition: 0.2s
+
+	span
+		height: 2px
+		background-color: #fff
+		transition: 0.2s
+
+	&.active
+		span:nth-child(2)
+			opacity: 0
+		
+		span:nth-child(1)
+			transform: translate3d(0, 6px, 0) rotate(45deg)
+
+		span:nth-child(3)
+			transform: translate3d(0, -6px, 0) rotate(-45deg)
+
+		&:hover
+			transform: none
+
+.header
+	width: 100%
+	height: 48px
+	background-color: $contrast
+	color: white
+	display: flex
+
+	&__left
+		width: 33%
+		min-width: 270px
+		padding: 17px 20px 15px 22px
+		font-size: 14px
+		line-height: 16px
+		display: flex
+		align-items: center
+		cursor: pointer
+
+		&:hover, &.active
+			background-color: darken($contrast, 10%)
+
+			.hamburger
+				transform: scaleY(1.1)
+
+	&__username
+		color: white
+		font-weight: bold
+
+	&__right
+		width: 69%
+		padding: 15px 19px 15px
+		display: flex
+		overflow: hidden
+		cursor: pointer
+		align-items: center
+
+		&:hover, &.active
+			background-color: darken($contrast, 10%)
+
+		*
+			white-space: nowrap
+			text-overflow: ellipsis
+			color: #b9cfe3 
+
+
+	&__chat-name
+		max-width: 180px
+		overflow: hidden
+		margin-right: 15px
+		font-weight: bold
+		color: white
+
+	&__functions
+		width: 33%
+		min-width: 270px
+		position: absolute
+		top: 48px
+		opacity: 1
+		left: 0
+		z-index: 1000
+		padding: 9px 0 7px 0
+		font-size: 14px
+		text-align: left
+		background-color: #fff
+		border: 1px solid rgba(15, 60, 96, 0.2)
+		border-left-color: #b5c3d0
+		border-right-color: #b5c3d0
+		transition: 0.2s
+
+		&.hide
+			opacity: 0
+			visibility: hidden
+
+		&-item
+			width: 100%
+			padding: 11px 19px 10px 21px
+			color: $contrast
+
+			&:hover
+				background-color: #F2F6FA
+	
+
+	

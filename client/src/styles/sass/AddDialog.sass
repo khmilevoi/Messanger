@@ -1,0 +1,114 @@
+@import "./_variables";
+	
+.add-dialog
+
+	width: 100%
+	max-width: 420px
+	background-color: #fff
+	margin-top: 43px
+	overflow: hidden
+
+	&__title
+		padding: 19px 15px
+		background-color: $contrast
+		display: flex
+		justify-content: space-between
+		align-items: center
+		font-weight: bold
+		font-size: 13px
+
+		*
+			color: white
+
+		&__close
+			cursor: pointer
+
+	&__name-foto
+		width: 100%
+		display: flex
+		align-items: center
+		justify-content: space-between
+		padding: 10px 15px
+
+		input
+			margin: 0
+
+	&__foto
+		margin-right: 10px
+
+		&-wrapper
+			margin-right: 20px
+			display: flex
+			align-items: center
+			white-space: nowrap
+			overflow: hidden
+
+		width: 100%
+		height: 100%
+		min-width: 48px
+		min-height: 48px
+		display: flex
+		align-items: center
+		justify-content: center
+		background-color: $contrast
+		border-radius: $infinity
+		cursor: pointer
+
+		img
+			width: 22px
+			
+
+	&__search
+
+		input#add-dialog__search
+			width: 100%
+			height: 34px
+			background-image: url("./../../img/icons.png")
+			background-size: 42px 1171px
+			background-position: -8px -205px;
+			position: relative
+			background-repeat: no-repeat
+			padding: 6px 27px 6px 30px
+
+	&__list
+		padding-top: 10px
+		max-height: 300px
+		overflow: hidden
+		overflow-y: scroll
+
+
+		&-item
+			padding: 8px 16px
+			display: flex
+			align-items: center
+			justify-content: flex-start
+			cursor: pointer
+			background-color: #fff
+
+			&.active
+				background-color: $contrast
+
+				*
+					color: white
+
+			.logo
+				margin-right: 12px
+
+			&__name
+				font-weight: bold
+				text-overflow: ellipsis
+				white-space: nowrap					
+	
+	&__add-form
+		display: flex
+		justify-content: flex-end
+		align-items: center
+		padding: 15px 27px
+
+		button
+			width: auto
+			margin: 0
+			padding: 6px 10px
+			color: $contrast
+			background-color: transparent
+

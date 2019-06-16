@@ -1,0 +1,75 @@
+@import "./_variables"
+	
+.dialog-information
+	
+	width: 100%
+	max-width: 480px
+	background-color: #fff
+	margin-top: 43px
+	overflow: hidden
+	background-color: #F5F5F5
+
+	&__head
+		width: 100%
+		background-color: $contrast
+		padding: 0 0 28px 26px
+	
+	&__title
+		display: flex
+		align-items: center
+		justify-content: flex-end
+		padding: 18px 22px 5px
+
+		& > *
+			padding-left: 15px
+			color: #dde8f1
+			cursor: pointer
+			font-weight: 700
+
+			&:hover
+				color: white
+
+	&__profile
+		padding: 35px 2px 0
+		display: flex
+
+		.logo
+			width: 72px
+			height: 72px
+			margin-right: 19px
+
+	&__name-members
+		display: flex
+		flex-direction: column
+		align-items: flex-start
+		justify-content: flex-start
+		
+		.name
+			font-style: 14px
+			padding: 15px 0px 9px
+			color: white
+			font-weight: 700
+
+		.members
+			color: #ccdeed
+			font-size: 13px
+
+	&__users
+		margin-top: 19px
+		padding: 19px 28px 0 120px
+		background-color: #fff
+		overflow: hidden
+
+	&__user
+		padding-bottom: 16px
+		display: flex
+		justify-content: flex-start
+		align-items: flex-start
+
+		.logo
+			margin-right: 12px
+
+		.name
+			font-size: 13px
+			font-weight: 700
+

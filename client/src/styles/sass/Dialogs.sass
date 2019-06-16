@@ -1,0 +1,102 @@
+@import "./_variables"
+	
+.dialogs
+
+	&__inner
+	width: 33%
+	min-width: 270px
+	height: 100%
+	overflow: scroll
+	overflow-x: hidden
+
+	.dialog
+		padding: 7px 16px
+		color: $text
+		overflow: hidden
+		display: flex
+		align-items: flex-start
+		position: relative
+		cursor: pointer
+
+		&:hover
+			background-color: $light_hover
+		
+		&.active
+			background-color: $contrast
+			color: white
+
+			*
+				color: white
+
+		&__logo
+			width: 48px
+			height: 48px
+			margin-right: 15px
+		
+		&__message-wrapper
+			height: 44px
+			overflow: hidden
+			word-wrap: break-word
+
+		&__chat-name
+			font-size: 13px
+			margin-top: 3px
+			margin-bottom: 3px
+			overflow: hidden
+			white-space: nowrap
+			text-overflow: ellipsis
+
+		&__first-message
+			text-overflow: ellipsis
+			margin-top: 5px
+			white-space: nowrap
+			overflow: hidden
+			font-size: 13px
+			color: grey
+
+			&__sender
+				color: $back_color
+
+		&__meta-wrapper
+			margin-left: auto
+			color: $light_color
+			text-align: right
+
+		&__date
+			color: inherit
+			font-size: 11px
+
+		&__unread-counter
+			background-color: $unread
+			font-size: 11px
+			padding: 5px
+			border-radius: 11px
+			min-width: 21px
+			text-align: center
+			margin-top: 4px
+			color: white
+
+			&.disable
+				display: none
+	
+	&__search
+		padding: 12px
+		position: relative
+
+		#dialogs__search
+			height: 34px
+			background-color: #f2f2f2
+			margin: 0
+			border: none
+			background-image: url("./../../img/icons.png")
+			background-size: 42px 1171px
+			background-position: -6px -205px;
+			font-size: 12px
+			border-radius: 2px
+			border: 2px solid #f2f2f2
+			background-repeat: no-repeat
+			transition: .1s
+
+			&:focus
+				background-color: #fff
+				border-color: $contrast

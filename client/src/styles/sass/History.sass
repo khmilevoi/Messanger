@@ -1,0 +1,98 @@
+@import "./_variables"
+
+.history
+	width: 69%
+	height: 100%
+
+	.send-form
+		width: 100%
+		max-width: 382px
+
+		&-wrapper
+			width: 100%
+			height: 120px
+			position: relative
+			display: flex
+			margin: 0px auto
+			padding: 10px 15px 21px
+			max-width: 554px;
+
+			.logo.left
+				margin-right: 20px
+			
+			.logo.right
+				margin-left: 20px
+
+		&__textarea
+			height: 50px !important
+			resize: none
+			overflow: hidden
+			margin-bottom: 13px !important
+			padding: 2px
+
+		&__button-wrapper
+			display: flex
+			align-items: center
+			justify-content: flex-end
+		
+		&__button
+			width: auto
+			display: inline-block
+			color: $contrast
+			background-color: transparent
+			font-size: 13px
+			font-weight: bold
+			text-transform: uppercase
+			padding: 0
+			margin: 5px 0 0 10px
+
+	.messages
+		width: 100%
+		height: calc(100% - 120px)
+		display: flex
+		flex-direction: column-reverse
+		overflow: scroll
+		overflow-x: hidden
+
+		.message
+			width: 100%
+			max-width: 560px;
+			padding: 8px 25px 8px 21px
+			margin: 0px auto
+			display: flex
+
+			&.unread
+				border-left: 1.2px solid rgba($contrast, 0.2)
+
+			.logo
+				opacity: 1
+				margin-right: 15px
+
+			&.grouped
+				.logo
+					opacity: 0
+					height: 0.1px
+			
+			&__body
+				max-width: 380px
+				display: block
+				overflow: hidden
+			
+				&_text
+					word-wrap: break-word
+					line-height: 150%
+					white-space: pre-wrap
+					font-size: 13px
+
+			&__author
+				font-size: 12px
+				color: $contrast
+				font-weight: bold
+				margin: 1px 0 4px 0
+			
+			&__date
+				color: #ababab
+				padding: 0 0 10px 10px
+				font-size: 11px
+				margin-left: auto
+			

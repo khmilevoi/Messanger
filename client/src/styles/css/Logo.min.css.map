@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "AAEA,AAAA,KAAK,AAAC,CACL,KAAK,CAAE,IAAI,CACX,SAAS,CAAE,IAAI,CACf,MAAM,CAAE,IAAI,CACZ,aAAa,CAAE,GAAG,CAClB,UAAU,CAAE,KAAK,CACjB,cAAc,CAAE,MAAM,CACtB,QAAQ,CAAE,MAAM,CAQK,AANpB,AAAD,aAAS,AAAC,CACT,OAAO,CAAE,IAAI,CACb,eAAe,CAAE,MAAM,CACvB,WAAW,CAAE,MAAM,CACnB,KAAK,CAAE,KAAK,CACZ,gBAAgB,CChBJ,OAAO,CDiBnB,SAAS,CAAE,IAAI,CAAG",
+    "sources": [
+        "../sass/Logo.sass",
+        "../sass/_variables.sass"
+    ],
+    "names": [],
+    "file": "Logo.min.css"
+}

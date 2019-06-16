@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "AAEA,AAAA,KAAK,AAAC,CACL,KAAK,CAAE,IAAI,CACX,MAAM,CAAE,IAAI,CAKO,AAPpB,AAIC,KAJI,CAIJ,gBAAgB,AAAC,CAChB,KAAK,CAAE,IAAI,CACX,MAAM,CAAE,iBAAiB,CACzB,OAAO,CAAE,IAAI,CAAG",
+    "sources": [
+        "../sass/Chat.sass",
+        "../sass/_variables.sass"
+    ],
+    "names": [],
+    "file": "Chat.min.css"
+}

@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "AAEA,AAAA,KAAK,CAAC;EACL,KAAK,EAAE,IAAI;EACX,SAAS,EAAE,IAAI;EACf,MAAM,EAAE,IAAI;EACZ,aAAa,EAAE,GAAG;EAClB,UAAU,EAAE,KAAK;EACjB,cAAc,EAAE,MAAM;EACtB,QAAQ,EAAE,MAAM;CAQK;;AANpB,AAAD,aAAS,CAAC;EACT,OAAO,EAAE,IAAI;EACb,eAAe,EAAE,MAAM;EACvB,WAAW,EAAE,MAAM;EACnB,KAAK,EAAE,KAAK;EACZ,gBAAgB,EChBJ,OAAO;EDiBnB,SAAS,EAAE,IAAI;CAAG",
+    "sources": [
+        "Logo.sass",
+        "_variables.sass"
+    ],
+    "names": [],
+    "file": "Logo.css"
+}
