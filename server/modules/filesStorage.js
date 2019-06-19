@@ -13,7 +13,7 @@ class FilesStorage {
     this.timerid = setInterval(async () => {
       await this.readFiles();
 
-      // this.printStat();
+      this.printStat();
     }, 5000);
 
     return () => {
