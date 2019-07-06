@@ -4,38 +4,7 @@ class User {
     this.id = id;
     this.socket_id = socket_id;
 
-    this.status = "offline";
-
-    this.dialogs = new Object();
-  }
-
-  online() {
     this.status = "online";
-  }
-
-  isOnline() {
-    return this.status === "online";
-  }
-
-  offline() {
-    this.status = "offline";
-  }
-
-  isOffline() {
-    return this.status === "offline";
-  }
-
-  getDialog(dialogName) {
-    return this.dialogs[dialogName] ? this.dialogs[dialogName] : null;
-  }
-
-  addDialog(dialogName, dialogId, unread, messages) {
-    this.dialogs[dialogName] = {
-      name: dialogName,
-      id: dialogId,
-      unread,
-      messages
-    };
   }
 }
 
@@ -48,7 +17,7 @@ class UserStorage {
 
   push(user) {
     if (user instanceof User) {
-      this.users[user.username] = user;
+      this.users[user.id] = user;
     } else {
       console.log("[push]: not user");
     }
@@ -66,24 +35,8 @@ class UserStorage {
     }
   }
 
-  getUser(username) {
-    return this.users[username] ? this.users[username] : null;
-  }
-
-  getUserById(id) {
-    const users = Object.keys(this.users);
-
-    let currentUser = null;
-
-    if (users.length > 0) {
-      for (let user of users) {
-        if (this.users[user].id === id) {
-          currentUser = this.users[user];
-        }
-      }
-    }
-
-    return currentUser;
+  getUser(id) {
+    return this.users[id] ? this.users[id] : null;
   }
 }
 

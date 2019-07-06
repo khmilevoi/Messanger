@@ -7,93 +7,102 @@ import { getUsers, logoutInterface, showModal, setModal } from "../../../store/C
 import AddDialog from "./AddDialog";
 import socket from "../../Socket";
 import DialogInformation from "./DialogInformation";
+import ChangeProfile from "./ChangeProfile";
 
 class Header extends Component {
-    constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props);
 
-        this.state = {
-            dropdown: false
-        };
-    }
-
-    showDropdown = () => {
-        this.setState({
-            dropdown: !this.state.dropdown
-        });
+    this.state = {
+      dropdown: false
     };
+  }
 
-    render() {
-        const { username } = this.props.user;
+  showDropdown = () => {
+    this.setState({
+      dropdown: !this.state.dropdown
+    });
+  };
 
-        let chatName = null;
-        let amountOfUsers = null;
+  render() {
+    const { username } = this.props.user;
 
-        if (this.props.app.dialogs.currentDialog) {
-            chatName = this.props.app.dialogs.currentDialog.chatName;
-            amountOfUsers = this.props.app.dialogs.currentDialog.users.length;
-        }
+    let chatName = null;
+    let amountOfUsers = null;
 
-        return (
-            <div className="header">
-                <div
-                    className="header__left"
-                    onClick={() => {
-                        this.showDropdown();
-                    }}
-                >
-                    <div className={"hamburger " + (this.state.dropdown ? "active" : "")}>
-                        <span />
-                        <span />
-                        <span />
-                    </div>
-                    <div className="header__username">{username}</div>
-                    <div className={"header__functions " + (this.state.dropdown ? "" : "hide")}>
-                        <div
-                            className="header__functions-item"
-                            onClick={() => {
-                                this.props.getUsers(socket);
-                                this.props.setModal(<AddDialog />);
-                                this.props.showModal();
-                            }}
-                        >
-                            Новый чат
-                        </div>
-                        <div className="header__functions-item">Изменить профиль</div>
-                        <div className="header__functions-item" onClick={this.props.logoutInterface}>
-                            Выйти из профиля
-                        </div>
-                    </div>
-                </div>
-                <div
-                    className="header__right"
-                    style={{ display: chatName ? "flex" : "none" }}
-                    onClick={() => {
-                        this.props.setModal(<DialogInformation />);
-                        this.props.showModal();
-                    }}
-                >
-                    <div className="header__chat-name">{chatName}</div>
-                    <div className="header__chat-users">{amountOfUsers} уч.</div>
-                    <div className="header__online-counter">, 2 онлайн</div>
-                </div>
-            </div>
-        );
+    if (this.props.app.dialogs.currentDialog) {
+      chatName = this.props.app.dialogs.currentDialog.chatName;
+      amountOfUsers = this.props.app.dialogs.currentDialog.users.length;
     }
+
+    return (
+      <div className="header">
+        <div
+          className="header__left"
+          onClick={() => {
+            this.showDropdown();
+          }}
+        >
+          <div className={"hamburger " + (this.state.dropdown ? "active" : "")}>
+            <span />
+            <span />
+            <span />
+          </div>
+          <div className="header__username">{username}</div>
+          <div className={"header__functions " + (this.state.dropdown ? "" : "hide")}>
+            <div
+              className="header__functions-item"
+              onClick={() => {
+                this.props.getUsers(socket);
+                this.props.setModal(<AddDialog />);
+                this.props.showModal();
+              }}
+            >
+              Новый чат
+            </div>
+            <div
+              className="header__functions-item"
+              onClick={() => {
+                this.props.setModal(<ChangeProfile />);
+                this.props.showModal();
+              }}
+            >
+              Изменить профиль
+            </div>
+            <div className="header__functions-item" onClick={this.props.logoutInterface}>
+              Выйти из профиля
+            </div>
+          </div>
+        </div>
+        <div
+          className="header__right"
+          style={{ display: chatName ? "flex" : "none" }}
+          onClick={() => {
+            this.props.setModal(<DialogInformation />);
+            this.props.showModal();
+          }}
+        >
+          <div className="header__chat-name">{chatName}</div>
+          <div className="header__chat-users">{amountOfUsers} уч.</div>
+          <div className="header__online-counter">, 2 онлайн</div>
+        </div>
+      </div>
+    );
+  }
 }
 
 const mapStateToProps = state => ({
-    ...state
+  ...state
 });
 
 const mapDispachToProps = dispatch => ({
-    getUsers: (...args) => dispatch(getUsers(...args)),
-    logoutInterface: (...args) => dispatch(logoutInterface(...args)),
-    setModal: (...args) => dispatch(setModal(...args)),
-    showModal: (...args) => dispatch(showModal(...args))
+  getUsers: (...args) => dispatch(getUsers(...args)),
+  logoutInterface: (...args) => dispatch(logoutInterface(...args)),
+  setModal: (...args) => dispatch(setModal(...args)),
+  showModal: (...args) => dispatch(showModal(...args))
 });
 
 export default connect(
-    mapStateToProps,
-    mapDispachToProps
+  mapStateToProps,
+  mapDispachToProps
 )(Header);

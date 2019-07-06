@@ -24,30 +24,33 @@ class FilesStorage {
   }
 
   readFiles() {
-    this.files = new Object();
+    return new Promise((resolve, reject) => {
+      this.files = new Object();
 
-    const files = fs.readdirSync(this.path);
+      fs.readdir(this.path, (err, files) => {
+        if (err) {
+          reject(err);
+        }
 
-    files.forEach(async val => {
-      const splited = val.split(".");
+        files.forEach(async val => {
+          const splited = val.split(".");
 
-      const postfix = splited[splited.length - 1];
+          const postfix = splited[splited.length - 1];
 
-      splited.splice(splited.length - 1, 1);
+          splited.splice(splited.length - 1, 1);
 
-      const name = splited.join(".");
+          const name = splited.join(".");
 
-      if (
-        typeof this.getFiles(name) !== "undefined" &&
-        this.getFiles(name) !== val
-      ) {
-        await this.removeFile(name, postfix);
-      } else {
-        this.files[name] = val;
-      }
+          if (typeof this.getFiles(name) !== "undefined" && this.getFiles(name) !== val) {
+            await this.removeFile(name, postfix);
+          } else {
+            this.files[name] = val;
+          }
+        });
+
+        resolve(this.files);
+      });
     });
-
-    return this.files;
   }
 
   getFiles(name, withNull = false) {
@@ -90,9 +93,7 @@ class FilesStorage {
   }
 
   printStat() {
-    console.log(
-      "============================ FILE STORAGE ============================"
-    );
+    console.log("============================ FILE STORAGE ============================");
 
     console.log(`PATH: ${this.path}`);
     console.log("FILES:");
@@ -101,9 +102,7 @@ class FilesStorage {
       console.log("WATCHED");
     }
 
-    console.log(
-      "======================================================================"
-    );
+    console.log("======================================================================");
   }
 }
 

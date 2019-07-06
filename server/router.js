@@ -36,13 +36,13 @@ const router = (socket, io) => {
         const { user_id, user_name } = result.rows[0];
 
         if (data !== null) {
-          fs.addFile(username, data.postfix, data.file);
+          fs.addFile(`user_${user_id}`, data.postfix, data.file);
         }
 
         response = {
           username: user_name,
           userid: user_id,
-          logoSrc: fs.getFiles(user_name, true)
+          logoSrc: fs.getFiles(`user_${user_id}`, true)
         };
       } else {
         await pool.query("insert into users(user_name) values($1)", [username]).catch(err => {
@@ -56,13 +56,13 @@ const router = (socket, io) => {
         const { user_id, user_name } = new_user.rows[0];
 
         if (data !== null) {
-          fs.addFile(username, data.postfix, data.file);
+          fs.addFile(`user_${user_id}`, data.postfix, data.file);
         }
 
         response = {
           username: user_name,
           userid: user_id,
-          logoSrc: fs.getFiles(user_name, true)
+          logoSrc: fs.getFiles(`user_${user_id}`, true)
         };
       }
 
@@ -108,7 +108,7 @@ const router = (socket, io) => {
             message_id: val.message_id,
             chat_id: val.chat_id,
             user_name: val.user_name,
-            logo_src: fs.getFiles(val.user_name, true),
+            logo_src: fs.getFiles(`user_${val.user_id}`, true),
             user_id: val.user_id,
             content: val.content,
             date_send: val.date_send,
@@ -126,13 +126,13 @@ const router = (socket, io) => {
           const users = requestUsers.rows.map(val => ({
             user_name: val.user_name,
             user_id: val.user_id,
-            user_logo_src: fs.getFiles(val.user_name, true)
+            user_logo_src: fs.getFiles(`user_${val.user_id}`, true)
           }));
 
           response[chat_id] = {
             chatName: chat_name,
             chatId: chat_id,
-            chatLogoSrc: fs.getFiles(chat_name, true),
+            chatLogoSrc: fs.getFiles(`chat_${chat_id}`, true),
             firstMessage:
               messages.length > 0
                 ? {
@@ -184,7 +184,7 @@ const router = (socket, io) => {
             message_id: val.message_id,
             chat_id: val.chat_id,
             user_name: val.user_name,
-            logo_src: fs.getFiles(val.user_name, true),
+            logo_src: fs.getFiles(`user_${val.user_id}`, true),
             user_id: val.user_id,
             content: val.content,
             date_send: val.date_send,
@@ -202,13 +202,13 @@ const router = (socket, io) => {
           const users = requestUsers.rows.map(val => ({
             user_name: val.user_name,
             user_id: val.user_id,
-            user_logo_src: fs.getFiles(val.user_name, true)
+            user_logo_src: fs.getFiles(`user_${val.user_id}`, true)
           }));
 
           response[chat_id] = {
             chatName: chat_name,
             chatId: chat_id,
-            chatLogoSrc: fs.getFiles(chat_name, true),
+            chatLogoSrc: fs.getFiles(`chat_${chat_id}`, true),
             firstMessage:
               messages.length > 0
                 ? {
@@ -260,7 +260,7 @@ const router = (socket, io) => {
           message_id: val.message_id,
           chat_id: val.chat_id,
           user_name: val.user_name,
-          logo_src: fs.getFiles(val.user_name, true),
+          logo_src: fs.getFiles(`user_${val.user_id}`, true),
           user_id: val.user_id,
           content: val.content,
           date_send: val.date_send,
@@ -278,13 +278,13 @@ const router = (socket, io) => {
         const users = requestUsers.rows.map(val => ({
           user_name: val.user_name,
           user_id: val.user_id,
-          user_logo_src: fs.getFiles(val.user_name, true)
+          user_logo_src: fs.getFiles(`user_${val.user_id}`, true)
         }));
 
         response = {
           chatName: chat_name,
           chatId: chat_id,
-          chatLogoSrc: fs.getFiles(chat_name, true),
+          chatLogoSrc: fs.getFiles(`chat_${chat_id}`, true),
           firstMessage:
             messages.length > 0
               ? {
@@ -410,7 +410,7 @@ const router = (socket, io) => {
       });
 
       if (data !== null) {
-        fs.addFile(chatName, data.postfix, data.file);
+        fs.addFile(`user_${newChatId}`, data.postfix, data.file);
       }
 
       io.emit("add_chat_success");
@@ -426,10 +426,20 @@ const router = (socket, io) => {
       const users = requestUsers.map(val => ({
         user_name: val.user_name,
         user_id: val.user_id,
-        user_logo_src: fs.getFiles(val.user_name, true)
+        user_logo_src: fs.getFiles(`user_${val.user_id}`, true)
       }));
 
       socket.emit("get_users_success", users);
+    } catch (err) {
+      console.log(err);
+    }
+  });
+
+  socket.on("change_user_information", async request => {
+    try {
+
+      
+
     } catch (err) {
       console.log(err);
     }

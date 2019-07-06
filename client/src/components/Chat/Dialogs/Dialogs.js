@@ -4,12 +4,7 @@ import Dialog from "./Dialog";
 import { connect } from "react-redux";
 
 import "../../../styles/css/Dialogs.min.css";
-import {
-  fetchDialogs,
-  toggleActiveDialog,
-  setSearchWord,
-  readMessage
-} from "../../../store/Chat/actions";
+import { fetchDialogs, toggleActiveDialog, setSearchWord, readMessage } from "../../../store/Chat/actions";
 import socket from "../../Socket";
 
 class Dialogs extends Component {
@@ -23,39 +18,32 @@ class Dialogs extends Component {
     const keys = Object.keys(dialogs.list);
 
     return keys
-      .map((val, index) => (
-        <Dialog
-          chatName={dialogs.list[val].chatName}
-          chatLogoSrc={dialogs.list[val].chatLogoSrc}
-          firstMessage={dialogs.list[val].firstMessage}
-          unreadCounter={dialogs.list[val].unreadCounter}
-          dateSend={dialogs.list[val].dateSend}
-          key={dialogs.list[val].chatId}
-          active={dialogs.list[val] === this.props.app.dialogs.currentDialog}
-          toggle={() => {
-            this.props.toggleActiveDialog(dialogs.list[val]);
-          }}
-          read={() => {
-            this.props.readMessage(
-              socket,
-              this.props.user.userid,
-              dialogs.list[val].chatId
-            );
-          }}
-        />
-      ))
+      .map(val => {
+        return (
+          <Dialog
+            chatName={dialogs.list[val].chatName}
+            chatLogoSrc={dialogs.list[val].chatLogoSrc}
+            firstMessage={dialogs.list[val].firstMessage}
+            unreadCounter={dialogs.list[val].unreadCounter}
+            dateSend={dialogs.list[val].dateSend}
+            key={dialogs.list[val].chatId}
+            active={dialogs.list[val] === this.props.app.dialogs.currentDialog}
+            toggle={() => {
+              this.props.toggleActiveDialog(dialogs.list[val]);
+            }}
+            read={() => {
+              this.props.readMessage(socket, this.props.user.userid, dialogs.list[val].chatId);
+            }}
+          />
+        );
+      })
       .filter(val => {
         if (this.props.app.searchWord) {
-          return (
-            val.props.chatName
-              .toUpperCase()
-              .indexOf(this.props.app.searchWord.toUpperCase()) >= 0
-          );
+          return val.props.chatName.toUpperCase().indexOf(this.props.app.searchWord.toUpperCase()) >= 0;
         }
 
         return true;
       })
-
       .sort((a, b) => new Date(b.props.dateSend) - new Date(a.props.dateSend));
   };
 
@@ -69,13 +57,7 @@ class Dialogs extends Component {
     return (
       <div className="dialogs">
         <div className="dialogs__search">
-          <input
-            type="text"
-            name="dialogs__search"
-            id="dialogs__search"
-            placeholder="Search"
-            onChange={this.searchHandler}
-          />
+          <input type="text" name="dialogs__search" id="dialogs__search" placeholder="Search" onChange={this.searchHandler} />
         </div>
         <div className="dialogs__inner">{this.renderDialogs()}</div>
       </div>
